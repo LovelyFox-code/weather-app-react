@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+
 //action
 export const fetchWeatherAction = createAsyncThunk(
   "weather/fetch",
@@ -9,10 +10,15 @@ export const fetchWeatherAction = createAsyncThunk(
         `http://api.openweathermap.org/data/2.5/weather?q=${payload}&appid=${process.env.REACT_APP_OPEN_WEATHER_KEY}`
       );
       return data;
-    } catch (error) {}
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
   }
 );
-//slice
+//reducer
 
 const weatherSlice = createSlice({
   name: "weather",
@@ -30,9 +36,11 @@ const weatherSlice = createSlice({
     });
     //rejected
     builder.addCase(fetchWeatherAction.rejected, (state, action) => {
-        state.loading = false;
-        state.weather = undefined;
-        state.error = action && action.payload;
-    })
+      state.loading = false;
+      state.weather = undefined;
+      state.error = action && action.payload;
+    });
   },
 });
+
+export default weatherSlice.reducer;
