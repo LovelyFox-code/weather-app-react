@@ -1,9 +1,10 @@
-.temp, .description{
-    margin: 5px;
-    font-family: Poppins;
-    color: white;
-  }
-.description{
-    padding-top: 3%;
-    font-size: 13px;
+.temp,
+.description {
+  margin: 5px;
+  font-family: Poppins;
+  color: white;
+}
+.description {
+  padding-top: 3%;
+  font-size: 13px;
 }
