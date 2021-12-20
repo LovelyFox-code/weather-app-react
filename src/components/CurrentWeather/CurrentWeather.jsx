@@ -33,7 +33,8 @@ const CurrentWeather = () => {
                 {weather?.sys?.country} is describe as: {" "}
                         {weather?.weather[0].description} with a temperature of {" "}
                         {Math.round(parseFloat(weather?.main.temp) - 273.15)} °C and humidity of {" "}
-                        {weather?.main?.humidity} %Fells like
+                        {weather?.main?.humidity}  
+                        % {" "}Fells like{" "}
                 {Math.round(parseFloat(weather?.main?.feels_like) - 273.15)} °C
             </p>
                 </div>
